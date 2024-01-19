@@ -1,0 +1,160 @@
+from audioop import reverse
+
+
+print("1.Scegliere almeno 3 esercizi del giorno precedente e riscriverli con un ciclo for invece che while")
+
+print("1.1.Memorizza e stampa tutti i divisori di un numero dato in input.")
+
+def trova_divisori(numero):
+    divisori = []
+    for i in range(1, numero + 1):
+        if numero % i == 0:
+            divisori.append(i)
+
+    return divisori
+
+numero_input = int(input("Inserisci un numero: "))
+
+divisori_trovati = trova_divisori(numero_input)
+print(f"I divisori di {numero_input} sono: {divisori_trovati}")
+
+print("1.2.Abbiamo una lista con i guadagni degli ultimi 12 mesi:")
+print("usando un costrutto for, calcolare la media dei guadagni e stamparla a video.")
+
+guadagni = [100, 90, 70, 40, 50, 80, 90, 120, 80, 20, 50, 50]
+
+somma_guadagni = 0
+
+for guadagno in guadagni:
+    somma_guadagni += guadagno
+    
+media_guadagni = somma_guadagni / len(guadagni)
+
+print("la media dei guadagni e' ", media_guadagni)
+
+
+print("1.3.Abbiamo una lista di studenti:")
+print("vogliamo dividere gli studenti in due squadre per un campionato di Uno nel seguente modo: selezioneremo")
+print("i nomi in posizione pari per un squadra, e i nomi in posizione dispari per l'altra.")
+print("Creiamo due liste per ogni squadra, e alla fine visualizziamole.")
+
+studenti = ["Alex", "Bob", "Cindy", "Dan", "Emma", "Faith", "Grace", "Henry", "Isabelle", "John"]
+squadra_pari = []
+squadra_dispari = []
+
+for indice, nome in enumerate(studenti):
+    if indice % 2 == 0:
+        squadra_pari.append(nome)
+    else:
+        squadra_dispari.append(nome)
+
+print("Squadra Pari:", squadra_pari)
+print("Squadra Dispari:", squadra_dispari)
+
+print("2.Creiamo un dizionario che assegni ad ogni proprietario la sua auto, sapendo che:")
+print("Ada guida una Punto, Ben guida una Multipla,Charlie guida una Golf,Debbie guida una 107")
+print("Stampiamo il dizionario per intero, e poi l'auto associata a Debbie.")
+
+dizionario={"Ada":"Punto","Ben":"Multipla","Charlie":"Golf","Debbie":"107"}
+print(dizionario)
+
+print(dizionario["Debbie"])
+
+print("La macchina di Debbie")
+for chiave, valore in dizionario.items():
+    if chiave == "Debbie":
+        print(valore)
+        
+
+print("3.Abbiamo un dizionario che assegna ad ogni proprietario la sua auto:")
+print("Con un ciclo, e usando il metodo .values(), stampiamo a video tutte le auto che non sono una Multipla.")
+
+dizionario_auto = {"Ada": "Punto", "Ben": "Multipla", "Charlie": "Golf", "Debbie": "107"}
+
+print("Tutte le auto, eccetto la Multipla:")
+for proprietario, auto in dizionario_auto.items():
+    if proprietario != "Ben" and auto != "Multipla":
+        print(auto)
+
+
+print("4.Abbiamo due dizionari che assegnano ad ogni proprietario la propria auto:")
+print("aggiorna il dizionario e stampalo. Cosa sucesso con Ben?")
+dizionario_auto = {"Ada": "Punto", "Ben": "Multipla", "Charlie": "Golf", "Debbie": "107", "Emily": "A1"} 
+nuovi_proprietari = {"Ben": "Polo", "Fred": "Octavia", "Grace": "Yaris", "Hugh": "Clio"}
+
+print(dizionario_auto)
+
+dizionario_auto.update(nuovi_proprietari)
+
+print("Dizionario Aggiornato:", dizionario_auto)
+
+print("5.Scrivere una funzione che, data una lista di numeri, fornisca in output il minimo e il massimo (possiamo usare ")
+print(" o meno le funzioni min() e max() nel corpo).")
+
+lista = [20, 15, 25, 18, 30, 22, 27]
+
+def conti(lista):
+    _min=min(lista)
+    _max=max(lista)
+    return _min, _max
+
+m= conti(lista)
+
+print("il massimo e ",m[1],"il minimo e",m[0])
+print(m)
+
+print("6.Scrivere una funzione che, dalla una lista di numeri, fornisca in output i tre ")
+print("numeri piu grandi; gestire il caso in cui la lista sia piu corta di tre, e quando uno ")
+print("o piu dei numeri selezionati sono uguali.")
+
+lista = [20, 15, 25, 18, 30, 22, 27]
+
+def tre_numeri_piu_grandi(lista):
+    if len(lista) < 3:
+        print("La lista e troppo corta.")
+        return None
+    
+lista_ordinata = sorted(lista)
+
+nuova_lista_invertita = list(reversed(lista_ordinata))
+
+lista_senza_dupplicati = list(set(nuova_lista_invertita))
+
+primi_tre_numeri = list(set(nuova_lista_invertita))[4:]
+
+print(primi_tre_numeri)
+
+
+print("7.Scrivere una funzione che in input acquisisce una lista di numeri e un numero K; ")
+print("in output, dovra restituire la media di tutti i numeri nella lista maggiori o uguali a")
+print("K; se non ce ne dovesse essere nessuno, dovra stampare a schermo un ")
+print("messaggio adeguato.")
+
+numeri = [5, 8, 12, 4, 10, 15, 7]
+K = 8
+
+
+numer_validi = []
+
+for numero in numeri:
+    if numero >= K:
+        numer_validi.append(numero)
+
+if numer_validi:
+    somma = sum(numer_validi)
+    media = somma / len(numer_validi)
+    print(f"La media dei numeri maggiori o uguali a {K} e: {media}")
+else:
+    print("Non ci sono numeri maggiori o uguali a", K)
+    
+
+print("8.Scrivere una funzione che, data una lista di numeri, come output stampera lo")
+print("stesso numero di asterischi su righe diverse, ottenendo una semplice")
+print("visualizzazione grafica")
+
+def aster(numeri):
+    for numero in numeri:
+        print('*' * numero)
+
+numeri = [5, 2, 3, 4]
+aster(numeri)
